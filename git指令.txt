@@ -1,0 +1,59 @@
+1.檢查版本號
+git --version 
+
+2.設定全域使用者
+git config --global user.name username
+git config --global user.email email
+
+3.初始化倉庫(專案底下)
+git init (產生.git)
+
+4.檔案狀態
+U->UnTracked (未追蹤)
+
+5.加入控管
+git add 1.txt (U->A)  (Added)
+
+6.加入控管後
+修改過後的檔案(A->M)  (Modified)
+- 需要git add 確認
+
+7.控管狀態
+git status
+
+8.檢查物件對應檔案狀態
+git ls-files -s
+
+9.檢視物件內容(-p)跟型態(-t)
+git cat-file -p d80088
+
+10.將目前暫存區的檔案變動加入倉庫
+git commit -m message
+
+11.檢視目前commit 
+git log
+
+12.檢視目前分支(預設master)
+git branch
+
+13.切換commit&branch
+git checkout 191263
+git checkout master
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
