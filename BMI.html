@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test_BMI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-top: 20px;
+        }
+        .container {
+            width: 80%;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="file"],
+        select {
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        a {
+            text-align: center;
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #4CAF50;
+            font-size: 16px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>test_BMI</h1>
+    <form action="">
+        <label for="usernames">Name:</label>
+        <input id="username" name="username" type="text" placeholder="please input your name">
+        <br>
+        <label for="age">age__:</label>
+        <input id="age" name="age" type="number" placeholder="18">
+        <br>
+        <label for="height">height:</label>
+        <input id="height" name="height" type="number" step="0.1">
+        <br>
+        <label for="weight">weight</label>
+        <input id="weight" name="weight" type="number" step="0.1">
+        <br>
+
+        <input type="radio" name="sex" id="male" checked>man
+        <input type="radio" name="sex" id="female">girl
+        <input type="file" name="" id="">
+
+        <br>
+        <label for="county">country</label>
+        <select name="county" id="county">
+            <option value="tapei">tapei</option>
+            <option value="japan">japan</option>
+            <option value="vietnam">vietnam</option>
+            <option value="usa">usa</option>
+            <option value="china">china</option>
+        </select>
+
+        
+        <br>
+        <button type="submit">start</button>
+
+        
+
+    </form>
+    <a href="index.html">HOME</a>
+</body>
+</html>
