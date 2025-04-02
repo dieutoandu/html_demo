@@ -7,54 +7,43 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-            color: #333;
+            background-color: #040424;
+            color: #92e49d;
         }
         h1 {
             text-align: center;
             color: #4CAF50;
             margin-top: 20px;
         }
-        .container {
-            width: 80%;
-            max-width: 600px;
-            margin: 30px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
         form {
             display: flex;
             flex-direction: column;
+            text-align: center;
+            
         }
         label {
             margin-bottom: 8px;
             font-weight: bold;
-            color: #555;
+            color: #a8e9b1;
         }
         input[type="text"],
         input[type="number"],
         input[type="file"],
         select {
-            padding: 8px;
+            padding: 10px;
+            margin: 10px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 16px;
-        }
-        input[type="radio"] {
-            margin-right: 10px;
+            text-align: center;
         }
         button {
             padding: 10px;
+
             background-color: #4CAF50;
-            color: white;
+            color: rgb(218, 208, 208);
             border: none;
-            border-radius: 4px;
-            cursor: pointer;
             font-size: 16px;
         }
         button:hover {
@@ -68,29 +57,32 @@
             color: #4CAF50;
             font-size: 16px;
         }
-        a:hover {
-            text-decoration: underline;
+
+        .inp{
+            margin: 20px;
         }
     </style>
 </head>
 <body>
     <h1>test_BMI</h1>
     <form action="">
-        <label for="usernames">Name:</label>
+        <label for="usernames">Name</label>
         <input id="username" name="username" type="text" placeholder="please input your name">
         <br>
-        <label for="age">age__:</label>
+        <label for="age">age</label>
         <input id="age" name="age" type="number" placeholder="18">
         <br>
-        <label for="height">height:</label>
+        <label for="height">height</label>
         <input id="height" name="height" type="number" step="0.1">
         <br>
         <label for="weight">weight</label>
         <input id="weight" name="weight" type="number" step="0.1">
         <br>
-
-        <input type="radio" name="sex" id="male" checked>man
-        <input type="radio" name="sex" id="female">girl
+        <div class="inp">
+            <input type="radio" name="sex" id="male" checked>man
+            <input type="radio" name="sex" id="female">girl
+        </div>
+        
         <input type="file" name="" id="">
 
         <br>
