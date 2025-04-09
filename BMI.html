@@ -17,6 +17,7 @@
         }
 
         form {
+            position: relative;
             width: 40%;
             background-color: #19e2c7;
             text-align: center;
@@ -72,6 +73,8 @@
 
 
         a {
+            position: absolute;
+
             text-align: center;
             border-radius: 10px;
             background-color: yellow;
@@ -80,12 +83,15 @@
             font-size: 16px;
             padding: 12px;
 
+            right: 12px;
+            bottom: 12px;
+
         }
 
         a:hover {
             color: rgb(20, 22, 8);
-            background-color: red';
- cursor: pointer;
+            background-color: red;
+            cursor: pointer;
 
         }
 
@@ -122,6 +128,9 @@
 
 <body>
     <h1 style="background-color: rgb(10, 48, 43);">test_BMI</h1>
+    <div id="record">
+
+    </div>
     <form action="">
         <label for="usernames">Name</label>
         <input id="username" name="username" type="text" placeholder="please input your name">
@@ -156,7 +165,7 @@
         </div>
 
         <button type="button" onclick="calc()">start</button>
-
+        <a href="index.html">HOME</a>
 
 
     </form>
@@ -166,7 +175,7 @@
     </div>
 
 
-    <div id="result">
+    <div id="result" hidden="true">
         BMI:<span class="bmi">
 
         </span>
@@ -178,7 +187,7 @@
 
 
 
-    <a href="index.html">HOME</a>
+
 
 
     <script>
@@ -190,7 +199,15 @@
         const countyEl = document.querySelector("#county");
         const sexEl = document.querySelector("input[name='sex']:checked");
 
-        console.log(sexEl, sexEl.value, nameEl, nameEl.value, ageEl, ageEl.value, heightEl, heightEl.value, weightEl, weightEl.value, countyEl, countyEl.value);
+        let data = {
+            total: 0,
+            count: 0
+
+
+
+        }
+
+        //console.log(sexEl, sexEl.value, nameEl, nameEl.value, ageEl, ageEl.value, heightEl, heightEl.value, weightEl, weightEl.value, countyEl, countyEl.value);
 
 
 
@@ -203,10 +220,15 @@
                 return;
             }
 
+            document.querySelector("#result").hidden = false;
+
 
             let bmi = get_BMI(height, weight);
             let result = getComment(bmi);
             console.log(bmi, result[0], result[1]);
+
+
+
 
             const bmiEl = document.querySelector(".bmi")
             bmiEl.innerText = bmi;
@@ -221,6 +243,14 @@
             document.querySelector("#info").innerHTML = `<h1>${nameEl.value} age:${age.value} county:${countyEl.value} sex:${sexEl.value}</h1>`
 
 
+
+
+            data['total'] += Number(bmi);
+            data.count += 1
+            let avg = (data.total / data.count).toFixed(1)
+            console.log(data);
+
+            document.querySelector("#record").innerHTML = `Many ${data.count} avg ${avg}`
         }
 
         function getComment(bmi) {
