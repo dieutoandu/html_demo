@@ -117,6 +117,11 @@
 
         }
 
+        #record {
+            font-size: 32px;
+            margin-top: 24px;
+        }
+
         @media screen and (max-width:600px) {
 
             form {
@@ -128,9 +133,11 @@
 
 <body>
     <h1 style="background-color: rgb(10, 48, 43);">test_BMI</h1>
+
     <div id="record">
 
     </div>
+
     <form action="">
         <label for="usernames">Name</label>
         <input id="username" name="username" type="text" placeholder="please input your name">
@@ -165,6 +172,7 @@
         </div>
 
         <button type="button" onclick="calc()">start</button>
+        <button type="button" id="del" style="background-color: red; color: black;">DELETE</button>
         <a href="index.html">HOME</a>
 
 
@@ -198,6 +206,20 @@
         const weightEl = document.querySelector("#weight");
         const countyEl = document.querySelector("#county");
         const sexEl = document.querySelector("input[name='sex']:checked");
+        const delEl = document.querySelector("#del")
+        //console.log(sexEl, sexEl.value, nameEl, nameEl.value, ageEl, ageEl.value, heightEl, heightEl.value, weightEl, weightEl.value, countyEl, countyEl.value);
+        console.log(delEl);
+
+        delEl.addEventListener("click", function () {
+            localStorage.removeItem("record")
+            //window.location.href = "";
+            avg = 0;
+            data.total = 0;
+            data.count = 0;
+            document.querySelector("#record").innerHTML = `Many ${data.count} avg ${avg}`;
+        });
+
+
 
         let data = {
             total: 0,
@@ -207,7 +229,15 @@
 
         }
 
-        //console.log(sexEl, sexEl.value, nameEl, nameEl.value, ageEl, ageEl.value, heightEl, heightEl.value, weightEl, weightEl.value, countyEl, countyEl.value);
+        record = JSON.parse(localStorage.getItem("record"));
+        if (record) {
+            data = record;
+            let avg = (data.total / data.count).toFixed(1)
+            document.querySelector("#record").innerHTML = `Many ${data.count} avg ${avg}`
+        }
+
+        console.log(data);
+
 
 
 
@@ -251,7 +281,15 @@
             console.log(data);
 
             document.querySelector("#record").innerHTML = `Many ${data.count} avg ${avg}`
+
+
+            localStorage.setItem("record", JSON.stringify(data))
+            localStorage.setItem("bmi", bmi)
         }
+
+
+
+
 
         function getComment(bmi) {
             if (bmi < 18.5) {
