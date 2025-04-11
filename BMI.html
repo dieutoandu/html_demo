@@ -7,140 +7,11 @@
     <title>test_BMI</title>
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bmi.css">
     <style>
-        h1 {
-            margin: 10px;
-            padding: 10px;
-            text-align: center;
-            color: #6e81eb;
-            margin-top: 20px;
-        }
 
-        form {
-            position: relative;
-            width: 40%;
-            background-color: #19e2c7;
-            text-align: center;
-            margin: 24px auto;
-            border-radius: 12px;
-            box-shadow: 10px 10px 5px lightblue;
-
-        }
-
-        label {
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #146d20;
-            font-size: 20px;
-        }
-
-        input[type="text"],
-        input[type="number"],
-
-        select {
-            padding: 10px;
-            margin: 10px 0px;
-            border: 1px solid #4e1515;
-            font-size: 20px;
-            text-align: center;
-
-        }
-
-        .inp {
-            background-color: rgb(111, 148, 180);
-            padding: 6px;
-            border: 2px dotted pink;
-            margin: 6px;
-
-        }
-
-
-        button {
-            margin-top: 1rem;
-            width: 120px;
-            height: 35px;
-            background-color: #4e8a51;
-            color: rgb(253, 251, 251);
-            border: none;
-            font-size: 16px;
-            border-radius: 10px;
-        }
-
-        button:hover {
-            background-color: #4e1515;
-            cursor: pointer;
-        }
-
-
-        a {
-            position: absolute;
-
-            text-align: center;
-            border-radius: 10px;
-            background-color: yellow;
-            text-decoration: none;
-            color: #08470a;
-            font-size: 16px;
-            padding: 12px;
-
-            right: 12px;
-            bottom: 12px;
-
-        }
-
-        a:hover {
-            color: rgb(20, 22, 8);
-            background-color: red;
-            cursor: pointer;
-
-        }
-
-
-        #result {
-            font-size: 1.5rem;
-            font-weight: bold;
-            background-color: #2cada3;
-            border-radius: 10px;
-        }
-
-        .comment {
-            font-size: 1.5rem;
-
-        }
-
-        #info {
-            font-size: 1rem;
-            font-weight: bold;
-            color: #08470a;
-            background-color: #b2d8c2;
-            border-radius: 10px;
-
-        }
-
-        #record {
-            font-size: 32px;
-            margin-top: 24px;
-        }
-
-        table {
-            background-color: rgb(220, 255, 243);
-            margin: 0 auto;
-            width: 600px;
-            font-family: 'Courier New', Courier, monospace;
-            border-collapse: collapse;
-        }
-
-        @media screen and (max-width:600px) {
-
-            form {
-                width: 80%
-            }
-
-            table {
-                width: 400px;
-            }
-        }
     </style>
+    <script src="js/bmi.js"></script>
 </head>
 
 <body>
@@ -229,6 +100,11 @@
         console.log(delEl);
 
         delEl.addEventListener("click", function () {
+
+            if (!confirm("are you sure all del ?")) {
+                return;
+            }
+
             localStorage.removeItem("record")
             //window.location.href = "";
             avg = 0;
@@ -402,37 +278,7 @@
 
 
 
-        function getComment(bmi) {
-            if (bmi < 18.5) {
-                comment = "「體重過輕」，需要多運動，均衡飲食，以增加體能，維持健康！"
-                color = 'cyan'
-            }
 
-            else if (bmi < 24) {
-                comment = "恭喜！「健康體重」，要繼續保持！"
-                color = 'green'
-            }
-
-            else if (bmi < 27) {
-                comment = "「體重過重」了，要小心囉，趕快力行「健康體重管理」！"
-                color = 'orange'
-            }
-            else {
-                comment = "啊～「肥胖」，需要立刻力行「健康體重管理」囉！"
-                color = 'red'
-            }
-
-            return [comment, color];
-
-
-        }
-
-
-        function get_BMI(height, weight) {
-            const bmi = weight / (height / 100) ** 2;
-            return bmi.toFixed(2);
-
-        }
 
 
 
