@@ -122,10 +122,22 @@
             margin-top: 24px;
         }
 
+        table {
+            background-color: rgb(220, 255, 243);
+            margin: 0 auto;
+            width: 600px;
+            font-family: 'Courier New', Courier, monospace;
+            border-collapse: collapse;
+        }
+
         @media screen and (max-width:600px) {
 
             form {
                 width: 80%
+            }
+
+            table {
+                width: 400px;
             }
         }
     </style>
@@ -194,6 +206,12 @@
     </div>
 
 
+    <div id="tableRecord">
+
+
+    </div>
+
+
 
 
 
@@ -217,6 +235,12 @@
             data.total = 0;
             data.count = 0;
             document.querySelector("#record").innerHTML = `Many ${data.count} avg ${avg}`;
+
+            datas = [];
+            document.querySelector("#tableRecord").innerHTML = "";
+
+
+
         });
 
 
@@ -229,14 +253,82 @@
 
         }
 
+        let datas = JSON.parse(localStorage.getItem("datas")) || [];
+
         record = JSON.parse(localStorage.getItem("record"));
+
+
         if (record) {
             data = record;
             let avg = (data.total / data.count).toFixed(1)
             document.querySelector("#record").innerHTML = `Many ${data.count} avg ${avg}`
         }
 
-        console.log(data);
+
+        if (datas.length > 0) {
+            rendertable(datas);
+        }
+
+
+        function addRow(data) {
+            return `
+            <tr>
+                <td>${data.name}</td>
+                <td>${data.county}</td>
+                <td>${data.age}</td>
+                <td>${data.sex}</td>
+                <td>${data.height}</td>
+                <td>${data.weight}</td>
+                <td>${data.bmi}</td>
+            </tr>
+            `
+        }
+
+        function rendertable(datas) {
+            tableData = "";
+
+            for (let i = 0; i < datas.length; i++) {
+                console.log(i + 1, datas[i]);
+
+                tableData += addRow(datas[i]);
+            }
+
+
+
+
+            let tableHtml = `
+                <table border="1px">
+                    <thead>
+                        <tr>
+                            <th>name</th>
+                            <th>county</th>
+                            <th>age</th>
+                            <th>sex</th>
+                            <th>height</th>
+                            <th>weight</th>
+                            <th>BMI</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                    ${tableData}
+
+                    </tbody>
+
+                </table>
+            `
+
+
+            console.log(tableData);
+
+            document.querySelector("#tableRecord").innerHTML = tableHtml
+
+        }
+
+
+
+
+
 
 
 
@@ -285,6 +377,25 @@
 
             localStorage.setItem("record", JSON.stringify(data))
             localStorage.setItem("bmi", bmi)
+
+
+            let person = {
+                name: nameEl.value,
+                age: ageEl.value,
+                height: weight,
+                weight: weight,
+                bmi: bmi,
+                sex: sexEl.value,
+                county: countyEl.value
+            }
+
+            datas.push(person);
+            console.log((datas));
+
+            localStorage.setItem("datas", JSON.stringify(datas));
+
+            rendertable(datas);
+
         }
 
 
