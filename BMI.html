@@ -55,7 +55,8 @@
         </div>
 
         <button type="button" onclick="calc()">start</button>
-        <button type="button" id="del" style="background-color: red; color: black;">DELETE</button>
+        <button type="button" id="del" style="background-color: red; color: rgb(238, 232, 232);">DELETE</button>
+        <button type="button" style="background-color: blue;" onclick="save()">Save</button>
         <a href="index.html">HOME</a>
 
 
@@ -97,7 +98,38 @@
         const sexEl = document.querySelector("input[name='sex']:checked");
         const delEl = document.querySelector("#del")
         //console.log(sexEl, sexEl.value, nameEl, nameEl.value, ageEl, ageEl.value, heightEl, heightEl.value, weightEl, weightEl.value, countyEl, countyEl.value);
-        console.log(delEl);
+        //console.log(delEl);
+
+        function save() {
+            let datas = JSON.parse(localStorage.getItem("datas"));
+            console.log(datas);
+
+            if (datas == null || datas.length == 0) {
+                alert("No any data");
+                return;
+            }
+
+            let jsonStr = JSON.stringify(datas);
+            console.log(jsonStr);
+
+            const blobData = new Blob([jsonStr], { type: "application/json" });
+            console.log(blobData);
+            const url = URL.createObjectURL(blobData);
+            console.log(url);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "record.json";
+            document.body.appendChild(a);
+            //a.text = "download"
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+
+        }
+
+
 
         delEl.addEventListener("click", function () {
 
@@ -106,6 +138,7 @@
             }
 
             localStorage.removeItem("record")
+            localStorage.removeItem("#tableRecord")
             //window.location.href = "";
             avg = 0;
             data.total = 0;
@@ -113,6 +146,7 @@
             document.querySelector("#record").innerHTML = `Many ${data.count} avg ${avg}`;
 
             datas = [];
+
             document.querySelector("#tableRecord").innerHTML = "";
 
 
@@ -266,7 +300,7 @@
             }
 
             datas.push(person);
-            console.log((datas));
+            //console.log((datas));
 
             localStorage.setItem("datas", JSON.stringify(datas));
 
